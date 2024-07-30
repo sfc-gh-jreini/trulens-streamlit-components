@@ -9,7 +9,7 @@ st.set_page_config(
     page_icon="🦑",
 )
 
-st.title("Use TruLens 🦑 in Streamlit 🎈")
+st.title("TruLens ❤️ Streamlit")
 
 st.write("Chat with the Streamlit docs, and view tracing & evaluation metrics powered by TruLens 🦑.")
 
@@ -40,7 +40,8 @@ with st.form("my_form"):
 
 if submitted:
     trulens_st.trulens_feedback(record=record)
-    trulens_st.trulens_trace(record=record)
+    with st.expander("See the trace of this record 👀"):
+        trulens_st.trulens_trace(record=record)
 
 with st.expander("Open to see aggregate evaluation metrics"):
 
