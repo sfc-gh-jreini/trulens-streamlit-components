@@ -62,7 +62,7 @@ class CortexSearchRetriever:
         else:
             return []
         
-provider = Cortex("mistral-large")
+provider = Cortex("llama3.1-8b")
 
 f_groundedness = (
     Feedback(
