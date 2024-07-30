@@ -1,1 +1,1 @@
-# trulens-streamlit-components
+# Demo TruLens components in Streamlit Cloud
