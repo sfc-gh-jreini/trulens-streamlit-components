@@ -1,3 +1,4 @@
+pip==24.0
 trulens_eval==0.32.0
 langchain==0.2.9
 snowflake-sqlalchemy
