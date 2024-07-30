@@ -1,6 +1,5 @@
 pip==24.0
-trulens_eval==0.32.0
-langchain==0.2.9
+trulens_eval @ git+https://github.com/truera/trulens#subdirectory=trulens_eval
 snowflake-sqlalchemy
 snowflake-snowpark-python
 snowflake-ml-python
