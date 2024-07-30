@@ -2,4 +2,4 @@ trulens_eval
 streamlit
 snowflake-sqlalchemy
 snowflake-snowpark-python
-snowflake-ml-python notebook
+snowflake-ml-python
