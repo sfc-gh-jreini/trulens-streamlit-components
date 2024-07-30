@@ -61,9 +61,7 @@ class CortexSearchRetriever:
             return [curr["doc_text"] for curr in resp.results]
         else:
             return []
-
-tru = Tru(database_url=db_url)
-
+        
 provider = Cortex("mistral-large")
 
 f_groundedness = (
@@ -133,6 +131,7 @@ class filtered_RAG_from_scratch:
 
     def __init__(self):
         self.retriever = CortexSearchRetriever(session=session, limit_to_retrieve=4)
+
     @instrument
     @context_filter(f_context_relevance, 0.75, keyword_for_prompt="query")
     def retrieve_context(self, query: str) -> list:
