@@ -3,3 +3,4 @@ trulens_eval @ git+https://github.com/truera/trulens@josh/streamlit_category_fix
 snowflake-sqlalchemy
 snowflake-snowpark-python
 snowflake-ml-python
+snowflake.core
