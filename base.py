@@ -35,6 +35,8 @@ db_url = "snowflake://{user}:{password}@{account}/{dbname}/{schema}?warehouse={w
   role=st.secrets["SNOWFLAKE_ROLE"],
 )
 
+tru = Tru(database_url=db_url)
+
 session = Session.builder.configs(connection_details).create()
 
 class CortexSearchRetriever:
