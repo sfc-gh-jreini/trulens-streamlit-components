@@ -6,37 +6,54 @@ from snowflake.cortex import Complete
 
 import streamlit as st
 
-from trulens_eval import Tru
-from trulens_eval.guardrails.base import context_filter
-from trulens_eval.tru_custom_app import TruCustomApp
-from trulens_eval.tru_custom_app import instrument
-from trulens_eval.feedback.provider.cortex import Cortex
-from trulens_eval.feedback import Feedback
-from trulens_eval import Select
+from trulens.core import Tru
+from trulens.core.guardrails.base import context_filter
+from trulens.core import TruCustomApp
+from trulens.core.app.custom import instrument
+from trulens.providers.cortex import Cortex
+from trulens.core import Feedback
+from trulens.core import Select
 import numpy as np
+
+from sqlalchemy import create_engine
+from snowflake.sqlalchemy import URL
+
+from cryptography.hazmat.backends import default_backend
+from cryptography.hazmat.primitives import serialization
+
+p_key= serialization.load_pem_private_key(
+    st.secrets["SNOWFLAKE_PRIVATE_KEY"].encode(),
+    password=None,
+    backend=default_backend()
+    )
+
+pkb = p_key.private_bytes(
+    encoding=serialization.Encoding.DER,
+    format=serialization.PrivateFormat.PKCS8,
+    encryption_algorithm=serialization.NoEncryption())
 
 connection_details = {
   "account":  st.secrets["SNOWFLAKE_ACCOUNT"],
   "user": st.secrets["SNOWFLAKE_USER"],
-  "password": st.secrets["SNOWFLAKE_USER_PASSWORD"],
+  "private_key": pkb,
   "role": st.secrets["SNOWFLAKE_ROLE"],
   "database": st.secrets["SNOWFLAKE_DATABASE"],
   "schema": st.secrets["SNOWFLAKE_SCHEMA"],
   "warehouse": st.secrets["SNOWFLAKE_WAREHOUSE"]
 }
 
-db_url = "snowflake://{user}:{password}@{account}/{dbname}/{schema}?warehouse={warehouse}&role={role}".format(
-  user=st.secrets["SNOWFLAKE_USER"],
-  account=st.secrets["SNOWFLAKE_ACCOUNT"],
-  password=st.secrets["SNOWFLAKE_USER_PASSWORD"],
-  dbname=st.secrets["SNOWFLAKE_DATABASE"],
-  schema=st.secrets["SNOWFLAKE_SCHEMA"],
-  warehouse=st.secrets["SNOWFLAKE_WAREHOUSE"],
-  role=st.secrets["SNOWFLAKE_ROLE"],
-)
+engine = create_engine(URL(
+    account=st.secrets["SNOWFLAKE_ACCOUNT"],
+    warehouse=st.secrets["SNOWFLAKE_WAREHOUSE"],
+    database=st.secrets["SNOWFLAKE_DATABASE"],
+    schema=st.secrets["SNOWFLAKE_SCHEMA"],
+    user=st.secrets["SNOWFLAKE_USER"],),
+    connect_args={
+            'private_key': pkb,
+            },
+    )
 
-tru = Tru(database_url=db_url)
-
+tru = Tru(database_engine = engine)
 session = Session.builder.configs(connection_details).create()
 
 class CortexSearchRetriever:
