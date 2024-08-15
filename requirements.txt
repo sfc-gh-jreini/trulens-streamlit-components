@@ -1,5 +1,8 @@
 pip==24.0
-trulens @ git+https://github.com/truera/trulens@josh/cortex_provider_auth#egg=trulens
+trulens-core @ git+https://github.com/truera/trulens@josh/cortex_provider_auth#egg=trulens-core
+trulens-dashboard @ git+https://github.com/truera/trulens@josh/cortex_provider_auth#egg=trulens-dashboard
+trulens-feedback @ git+https://github.com/truera/trulens@josh/cortex_provider_auth#egg=trulens-feedback
+trulens-providers-cortex @ git+https://github.com/truera/trulens@josh/cortex_provider_auth#egg=trulens-providers-cortex
 snowflake-sqlalchemy
 snowflake-snowpark-python
 snowflake-ml-python
