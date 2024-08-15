@@ -11,7 +11,7 @@ from base import rag, filtered_rag, tru_rag, filtered_tru_rag, engine
 
 st.title("TruLens ❤️ Streamlit")
 
-st.write("Chat with the Streamlit docs, and view tracing & evaluation metrics powered by TruLens 🦑.")
+st.write("Chat with the Streamlit docs, and view tracing & evaluation metrics powered by TruLens 🦑. \n LLMs and Search powered by ❄️.")
 
 tru = Tru(database_engine=engine)
 
@@ -40,9 +40,11 @@ with st.form("my_form"):
         record, response = generate_response(text)
         st.info(response)
 
-        with st.expander("See the trace of this record 👀"):
-            trulens_st.trulens_trace(record=record)
-        trulens_st.trulens_feedback(record=record)
+if submitted:
+    with st.expander("See the trace of this record 👀"):
+        trulens_st.trulens_trace(record=record)
+
+    trulens_st.trulens_feedback(record=record)
 
 with st.expander("Open to see aggregate evaluation metrics"):
 
