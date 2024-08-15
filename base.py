@@ -184,8 +184,4 @@ filtered_rag = filtered_RAG_from_scratch()
 
 filtered_tru_rag = TruCustomApp(filtered_rag,
     app_id = 'Filtered RAG App',
-<<<<<<< HEAD
-    feedbacks = [f_groundedness, f_answer_relevance, f_context_relevance])
-=======
     feedbacks = feedbacks)
->>>>>>> e33beb4 (updates to app)
