@@ -1,4 +1,5 @@
 pip==24.0
+npm
 trulens-core @ git+https://github.com/truera/trulens@josh/cortex_provider_auth#egg=trulens-core&subdirectory=src/core/
 trulens-dashboard @ git+https://github.com/truera/trulens@josh/cortex_provider_auth#egg=trulens-dashboard&subdirectory=src/dashboard/
 trulens-feedback @ git+https://github.com/truera/trulens@josh/cortex_provider_auth#egg=trulens-feedback&subdirectory=src/feedback/
