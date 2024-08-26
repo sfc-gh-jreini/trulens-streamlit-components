@@ -1,5 +1,5 @@
 pip==24.0
-nltk==3.8.2
+nltk==3.9.1
 trulens-core @ git+https://github.com/truera/trulens@josh/streamlit_demo#egg=trulens-core&subdirectory=src/core/
 trulens-feedback @ git+https://github.com/truera/trulens@josh/streamlit_demo#egg=trulens-feedback&subdirectory=src/feedback/
 trulens-providers-cortex @ git+https://github.com/truera/trulens@josh/streamlit_demo#egg=trulens-providers-cortex&subdirectory=src/providers/cortex/
