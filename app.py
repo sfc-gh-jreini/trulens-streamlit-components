@@ -1,6 +1,6 @@
 import streamlit as st
 import trulens.dashboard.streamlit as trulens_st
-from trulens.core import Tru
+from trulens.core import TruSession
 
 st.set_page_config(
     page_title="Use TruLens in Streamlit",
@@ -13,7 +13,7 @@ st.title("TruLens ❤️ Streamlit")
 
 st.write("Chat with the Streamlit docs, and view tracing & evaluation metrics powered by TruLens 🦑. \n LLMs and Search powered by ❄️.")
 
-tru = Tru(database_engine=engine)
+tru = TruSession(database_engine=engine)
 
 with_filters = st.toggle("Use [Context Filter Guardrails](%s)" % "https://www.trulens.org/trulens_eval/guardrails/", value=False)
 
