@@ -6,7 +6,7 @@ from snowflake.cortex import Complete
 
 import streamlit as st
 
-from trulens.core import Tru
+from trulens.core import TruSession
 from trulens.core.guardrails.base import context_filter
 from trulens.core import TruCustomApp
 from trulens.core.app.custom import instrument
@@ -53,7 +53,7 @@ engine = create_engine(URL(
             },
     )
 
-tru = Tru(database_engine = engine)
+tru = TruSession(database_engine = engine)
 session = Session.builder.configs(connection_details).create()
 
 class CortexSearchRetriever:
