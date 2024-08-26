@@ -81,7 +81,7 @@ class CortexSearchRetriever:
         else:
             return []
         
-provider = Cortex("llama3.1-8b")
+provider = Cortex(connection_parameters=connection_details, model_engine="llama3.1-8b")
 
 f_groundedness = (
     Feedback(
@@ -177,11 +177,13 @@ class filtered_RAG_from_scratch:
 rag = RAG_from_scratch()
 
 tru_rag = TruCustomApp(rag,
-    app_id = 'RAG v1',
+    app_version = 'v1',
+    app_name = 'RAG',
     feedbacks = feedbacks)
 
 filtered_rag = filtered_RAG_from_scratch()
 
 filtered_tru_rag = TruCustomApp(filtered_rag,
-    app_id = 'Filtered RAG App',
+    app_version = 'v2',
+    app_name = 'RAG',
     feedbacks = feedbacks)
