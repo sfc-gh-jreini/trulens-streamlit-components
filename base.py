@@ -8,8 +8,8 @@ import streamlit as st
 
 from trulens.core import TruSession
 from trulens.core.guardrails.base import context_filter
-from trulens.core import TruCustomApp
-from trulens.core.app.custom import instrument
+from trulens.apps.custom import TruCustomApp
+from trulens.apps.custom import instrument
 from trulens.providers.cortex import Cortex
 from trulens.core import Feedback
 from trulens.core import Select
