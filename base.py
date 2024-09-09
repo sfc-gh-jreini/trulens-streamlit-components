@@ -141,17 +141,14 @@ class RAG_from_scratch:
     {query}
     Answer: '
     """
-    return Complete("mistral-large", query)
+    return Complete("mistral-large", prompt)
 
   @instrument
   def query(self, query: str) -> str:
     context_str = self.retrieve_context(query)
     return self.generate_completion(query, context_str)
 
-class filtered_RAG_from_scratch:
-
-    def __init__(self):
-        self.retriever = CortexSearchRetriever(session=session, limit_to_retrieve=4)
+class filtered_RAG_from_scratch(RAG_from_scratch):
 
     @instrument
     @context_filter(f_context_relevance, 0.75, keyword_for_prompt="query")
@@ -161,20 +158,6 @@ class filtered_RAG_from_scratch:
         """
         results = self.retriever.retrieve(query)
         return results
-
-    @instrument
-    def generate_completion(self, query: str, context_str: list) -> str:
-        """
-        Generate answer from context.
-        """
-        completion = Complete("mistral-large",query)
-        return completion
-
-    @instrument
-    def query(self, query: str) -> str:
-        context_str = self.retrieve_context(query=query)
-        completion = self.generate_completion(query=query, context_str=context_str)
-        return completion
     
 rag = RAG_from_scratch()
 
