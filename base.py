@@ -17,6 +17,7 @@ import numpy as np
 
 from sqlalchemy import create_engine
 from snowflake.sqlalchemy import URL
+import snowflake.connector
 
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import serialization
@@ -53,6 +54,7 @@ engine = create_engine(URL(
             },
     )
 
+snowflake_connection = snowflake.connector.connect(**connection_params)
 tru = TruSession(database_engine = engine)
 session = Session.builder.configs(connection_details).create()
 
@@ -81,7 +83,7 @@ class CortexSearchRetriever:
         else:
             return []
         
-provider = Cortex(connection_parameters=connection_details, model_engine="llama3.1-8b")
+provider = Cortex(snowflake_connection, model_engine="llama3.1-8b")
 
 f_groundedness = (
     Feedback(
