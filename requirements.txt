@@ -1,9 +1,9 @@
 pip==24.0
 nltk==3.9.1
-trulens-core>=1.0
-trulens-feedback>=1.0
-trulens-providers-cortex>=1.0
-trulens-dashboard>=1.0
+trulens-core>=1.0.4
+trulens-feedback>=1.0.4
+trulens-providers-cortex>=1.0.4
+trulens-dashboard @ git+https://github.com/truera/trulens#egg=trulens-dashboard&subdirectory=src/dashboard/
 snowflake-sqlalchemy
 snowflake-snowpark-python
 snowflake-ml-python
